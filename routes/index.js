@@ -20,11 +20,9 @@ turboRouter.get('/', async function (req, res) {
 
   let $ = turboCheerio.load(response.body);
   const title = $('title').text();
-  const firstResultName = $('html').find('.search-results-cat:first-child .results-line:first-child a').text();
-  const firstResultUrl = $('html').find('.search-results-cat:first-child .results-line:first-child a').attr('href');
-  console.log(firstResultName);
-  console.log(firstResultUrl);
-  res.render('index', { turboTitle: title, turboContent: `${firstResultName} ${firstResultUrl}` });
+  const firstResultName = $('.results-line').first().text();
+  const firstResultUrl = $('.results-line > a').first().attr('href');
+  res.render('index', { turboTitle: title, turboContent: `${firstResultName}, ${firstResultUrl}` });
 });
 
 module.exports = turboRouter;
